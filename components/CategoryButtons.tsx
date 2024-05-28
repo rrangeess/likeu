@@ -1,4 +1,5 @@
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -7,10 +8,13 @@ import {
 } from 'react-native'
 import React, { useRef, useState } from 'react'
 import Colors from '@/constants/Colors'
-import destinationCategories from '@/data/categories'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import nbaTeam from '@/data/categories'
 
-const CategoryButtons = () => {
+type Props = {
+  onTeamChanged: (team: string) => void
+}
+
+const CategoryButtons = ({ onTeamChanged }: Props) => {
   const scrollRef = useRef<ScrollView>(null)
   const itemRef = useRef<TouchableOpacity[] | null[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
@@ -21,6 +25,7 @@ const CategoryButtons = () => {
     selected?.measure(x => {
       scrollRef.current?.scrollTo({ x: x, y: 0, animated: true })
     })
+    onTeamChanged(nbaTeam[index].title)
   }
 
   return (
@@ -36,7 +41,7 @@ const CategoryButtons = () => {
           marginBottom: 10,
         }}
       >
-        {destinationCategories.map((item, index) => (
+        {nbaTeam.map((item, index) => (
           <TouchableOpacity
             key={index}
             ref={el => (itemRef.current[index] = el)}
@@ -47,10 +52,9 @@ const CategoryButtons = () => {
                 : styles.categoryBtn
             }
           >
-            <MaterialCommunityIcons
-              name={item.iconName as any}
-              size={20}
-              color={activeIndex == index ? Colors.white : Colors.gray}
+            <Image
+              source={item.logoPath}
+              style={{ width: 30, height: 30, objectFit: 'contain' }}
             />
             <Text
               style={

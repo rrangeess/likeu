@@ -1,44 +1,32 @@
-const destinationCategories = [
+const nbaTeam = [
   {
-    title: "All",
-    iconName: "hiking"
+    title: 'All',
+    logoPath: require('../assets/teamlogos/nba_logo.png'),
   },
   {
-    title: "Beaches",
-    iconName: "beach"
+    title: 'Boston Celtics',
+    logoPath: require('../assets/teamlogos/boston_celtics.png'),
   },
   {
-    title: "Mountains",
-    iconName: "terrain"
+    title: 'Brooklyn Nets',
+    logoPath: require('../assets/teamlogos/brooklyn_nets.png'),
   },
   {
-    title: "Cities",
-    iconName: "city"
+    title: 'New York Knicks',
+    logoPath: require('../assets/teamlogos/new_york_knicks.png'),
   },
   {
-    title: "Forests",
-    iconName: "tree"
+    title: 'Philadelphia 76ers',
+    logoPath: require('../assets/teamlogos/philadelphia_76ers.png'),
   },
   {
-    title: "Lakes",
-    iconName: "swim"
+    title: 'Toronto Raptors',
+    logoPath: require('../assets/teamlogos/toronto_raptors.png'),
   },
   {
-    title: "Historical Sites",
-    iconName: "castle"
+    title: 'Chicago Bulls',
+    logoPath: require('../assets/teamlogos/chicago_bulls.png'),
   },
-  {
-    title: "National Parks",
-    iconName: "pine-tree"
-  },
-  {
-    title: "Islands",
-    iconName: "island"
-  },
-  {
-    title: "Deserts",
-    iconName: "weather-sunny"
-  }
-];
+]
 
-export default destinationCategories;
+export default nbaTeam

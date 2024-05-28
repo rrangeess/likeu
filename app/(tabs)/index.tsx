@@ -6,15 +6,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '@/constants/Colors'
 import { useHeaderHeight } from '@react-navigation/elements'
 import CategoryButtons from '@/components/CategoryButtons'
+import Listings from '@/components/Listings'
+import listingData from '@/data/destinations.json'
 
 const Page = () => {
   const headerHeight = useHeaderHeight()
+  const [team, setTeam] = useState('All')
+
+  const onTeamChanged = (team: string) => {
+    setTeam(team)
+  }
+
   return (
     <>
       <Stack.Screen
@@ -24,9 +32,7 @@ const Page = () => {
           headerLeft: () => (
             <TouchableOpacity onPress={() => {}} style={{ marginLeft: 20 }}>
               <Image
-                source={{
-                  uri: '#user_image',
-                }}
+                source={require('../../assets/null/github.jpeg')}
                 style={{
                   width: 40,
                   height: 40,
@@ -70,7 +76,8 @@ const Page = () => {
             <Ionicons name="options" size={28} color={Colors.white} />
           </TouchableOpacity>
         </View>
-        <CategoryButtons />
+        <CategoryButtons onTeamChanged={onTeamChanged} />
+        <Listings listings={listingData} category={team} />
       </View>
     </>
   )
