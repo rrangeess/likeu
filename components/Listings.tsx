@@ -71,14 +71,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 170,
+    height: 250,
     borderRadius: 10,
     marginBottom: 30,
+    objectFit: 'cover',
   },
   bookmark: {
     position: 'absolute',
-    top: 185,
+    top: 240,
     right: 10,
     backgroundColor: Colors.primartColor,
     padding: 10,

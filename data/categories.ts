@@ -4,6 +4,10 @@ const nbaTeam = [
     logoPath: require('../assets/teamlogos/nba_logo.png'),
   },
   {
+    title: 'Golden State Warriors',
+    logoPath: require('../assets/teamlogos/golden_state_warriors.png'),
+  },
+  {
     title: 'Boston Celtics',
     logoPath: require('../assets/teamlogos/boston_celtics.png'),
   },

@@ -1,5 +1,7 @@
 import {
+  FlatList,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -13,7 +15,11 @@ import Colors from '@/constants/Colors'
 import { useHeaderHeight } from '@react-navigation/elements'
 import CategoryButtons from '@/components/CategoryButtons'
 import Listings from '@/components/Listings'
+
+// player data json
 import listingData from '@/data/destinations.json'
+import NewsCard from '@/components/NewsCard'
+import Chart from '@/components/Chart'
 
 const Page = () => {
   const headerHeight = useHeaderHeight()
@@ -61,8 +67,13 @@ const Page = () => {
           ),
         }}
       />
-      <View style={[styles.container, { paddingTop: headerHeight }]}>
-        <View style={styles.searchSectionWrapper}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: Colors.black }}
+        pagingEnabled
+      >
+        <View style={[styles.container, { paddingTop: headerHeight }]}>
+          {/* <View style={styles.searchSectionWrapper}>
           <View style={styles.searchBar}>
             <Ionicons
               name="search"
@@ -75,10 +86,13 @@ const Page = () => {
           <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
             <Ionicons name="options" size={28} color={Colors.white} />
           </TouchableOpacity>
+        </View> */}
+          <NewsCard />
+          <CategoryButtons onTeamChanged={onTeamChanged} />
+          <Listings listings={listingData} category={team} />
+          <Chart />
         </View>
-        <CategoryButtons onTeamChanged={onTeamChanged} />
-        <Listings listings={listingData} category={team} />
-      </View>
+      </ScrollView>
     </>
   )
 }
@@ -90,6 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: Colors.black,
+    overflow: 'hidden',
   },
   searchSectionWrapper: {
     flexDirection: 'row',

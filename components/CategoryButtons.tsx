@@ -30,7 +30,7 @@ const CategoryButtons = ({ onTeamChanged }: Props) => {
 
   return (
     <View>
-      <Text style={styles.title}>Categories</Text>
+      <Text style={styles.title}>Teams</Text>
       <ScrollView
         ref={scrollRef}
         horizontal
@@ -59,7 +59,7 @@ const CategoryButtons = ({ onTeamChanged }: Props) => {
             <Text
               style={
                 activeIndex == index
-                  ? { color: Colors.white, margin: 5 }
+                  ? { color: Colors.white, margin: 5, fontWeight: '700' }
                   : { color: Colors.gray, margin: 5 }
               }
             >
