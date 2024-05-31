@@ -35,18 +35,10 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="search"
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="search" size={28} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="bookmarks"
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="bookmark" size={28} color={color} />
+            <Ionicons name="star" size={28} color={color} />
           ),
         }}
       />

@@ -33,6 +33,8 @@ const Page = () => {
     <>
       <Stack.Screen
         options={{
+          headerTintColor: Colors.black,
+          headerStyle: { backgroundColor: Colors.black },
           headerTransparent: true,
           headerTitle: '',
           headerLeft: () => (
@@ -73,20 +75,6 @@ const Page = () => {
         pagingEnabled
       >
         <View style={[styles.container, { paddingTop: headerHeight }]}>
-          {/* <View style={styles.searchSectionWrapper}>
-          <View style={styles.searchBar}>
-            <Ionicons
-              name="search"
-              size={18}
-              style={{ marginRight: 5 }}
-              color={Colors.white}
-            />
-            <TextInput placeholder="Search..." />
-          </View>
-          <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
-            <Ionicons name="options" size={28} color={Colors.white} />
-          </TouchableOpacity>
-        </View> */}
           <NewsCard />
           <CategoryButtons onTeamChanged={onTeamChanged} />
           <Listings listings={listingData} category={team} />
@@ -104,7 +92,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: Colors.black,
-    overflow: 'hidden',
   },
   searchSectionWrapper: {
     flexDirection: 'row',
