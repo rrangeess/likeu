@@ -1,12 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Colors from '@/constants/Colors'
+import { Stack } from 'expo-router'
 
 const Page = () => {
   return (
-    <View style={styles.container}>
-      <Text>Profile</Text>
-    </View>
+    <>
+      <Stack.Screen options={{ headerShown: false }} />
+      <View style={styles.container}>
+        <Text>Profile</Text>
+      </View>
+    </>
   )
 }
 

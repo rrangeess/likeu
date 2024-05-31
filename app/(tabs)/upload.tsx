@@ -1,18 +1,16 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState, useEffect, useRef } from 'react'
 import Colors from '@/constants/Colors'
 import { Stack } from 'expo-router'
-import { Camera, AutoFocus, CameraType } from 'expo-camera'
+import { Camera } from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker'
 
 const Page = () => {
-  const [vedio, setVedio] = useState()
-  const [imageUri, setImageUri] = useState(null)
+  const [vedio, setVedio] = useState(null)
+  const [imageUri, setImageUri] = useState(require('@/assets/null/github.jpeg'))
   const [camera, setCamera] = useState(null)
-
-  const cameraRef = useRef(null)
-  const [cameraType, setCameraType] = useState(CameraType.back)
-  const [zoomLevel, setZoomLevel] = useState(0)
+  const [cameraPermissions, setCameraPermissions] = useState('false')
+  const [garraryPermissions, setGarraryPermissions] = useState('false')
 
   useEffect(() => {
     permisionFunction()
@@ -22,30 +20,27 @@ const Page = () => {
     const cameraPermission = await Camera.requestCameraPermissionsAsync()
     const imagePermission =
       await ImagePicker.requestMediaLibraryPermissionsAsync()
-    console.log(cameraPermission.granted)
-    console.log(imagePermission.granted)
+
+    setCameraPermissions(cameraPermission.status)
+    setGarraryPermissions(imagePermission.status)
   }
 
-  const takePicture = () => {
-    return (
-      <Camera
-        ref={cameraRef}
-        type={cameraType}
-        zoom={zoomLevel}
-        autoFocus={AutoFocus.on}
-      />
-    )
+  const takePicture = async () => {
+    let result = await Camera.getCameraPermissionsAsync()
+    console.log(result)
   }
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    })
+    if (garraryPermissions !== 'false') {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      })
 
-    console.log(result)
+      console.log(result.assets)
+    }
   }
 
   return (
@@ -53,7 +48,20 @@ const Page = () => {
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
         <Text style={styles.txt}>Uploading</Text>
-        <View style={styles.uploading}></View>
+        <View style={styles.uploading}>
+          <Image
+            source={imageUri}
+            style={{
+              width: 280,
+              height: 390,
+              objectFit: 'fill',
+              borderRadius: 10,
+            }}
+          />
+          <TouchableOpacity onPress={() => {}} style={styles.btn}>
+            <Text style={styles.txt}>Predict</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.btn_container}>
           <TouchableOpacity onPress={pickImage} style={styles.btn}>
             <Text style={styles.txt}>OPEN GARRARY</Text>
@@ -86,7 +94,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    margin: 20,
     width: 130,
     height: 50,
     backgroundColor: Colors.primartColor,
@@ -94,12 +101,19 @@ const styles = StyleSheet.create({
   btn_container: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: 300,
+    height: 70,
     borderRadius: 10,
     backgroundColor: Colors.bgColor,
   },
   uploading: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 300,
-    height: 500,
+    height: 450,
     margin: 10,
     padding: 20,
     borderRadius: 10,
