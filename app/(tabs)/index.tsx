@@ -1,10 +1,7 @@
 import {
-  FlatList,
   Image,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native'
@@ -15,15 +12,19 @@ import Colors from '@/constants/Colors'
 import { useHeaderHeight } from '@react-navigation/elements'
 import CategoryButtons from '@/components/CategoryButtons'
 import Listings from '@/components/Listings'
+import NewsCard from '@/components/NewsCard'
+import Chart from '@/components/Chart'
 
 // player data json
 import listingData from '@/data/destinations.json'
-import NewsCard from '@/components/NewsCard'
-import Chart from '@/components/Chart'
+import userlogs from '@/data/userlogs.json'
 
 const Page = () => {
   const headerHeight = useHeaderHeight()
   const [team, setTeam] = useState('All')
+  const [dataset, setDataset] = useState(
+    userlogs.data.similarity_per_date.similarity
+  )
 
   const onTeamChanged = (team: string) => {
     setTeam(team)
@@ -78,7 +79,7 @@ const Page = () => {
           <NewsCard />
           <CategoryButtons onTeamChanged={onTeamChanged} />
           <Listings listings={listingData} category={team} />
-          <Chart />
+          <Chart dataset={dataset} />
         </View>
       </ScrollView>
     </>

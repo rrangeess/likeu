@@ -42,6 +42,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  useEffect(() => {}, [])
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

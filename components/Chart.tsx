@@ -1,35 +1,37 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Colors from '@/constants/Colors'
 import { LineChart } from 'react-native-chart-kit'
 
-const data = {
-  labels: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
-  datasets: [
-    {
-      data: [20, 0, 45, 50, 79, 63, 66],
-      color: (opacity = 1) => `rgba(248,134,0, ${opacity})`, // optional
-      strokeWidth: 3, // optional
-    },
-  ],
-  legend: ['Similarity'], // optional
+type Props = {
+  dataset: any[]
 }
 
-const chartConfig = {
-  backgroundGradientFrom: Colors.bgColor,
-  // backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: Colors.bgColor,
-  //backgroundGradientToOpacity: 0.5,
-  backgroundColor: Colors.bgColor,
-  color: (opacity = 1) => `rgba(248,134,0, ${opacity})`,
-  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+const Chart = ({ dataset }: Props) => {
+  const data = {
+    labels: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+    datasets: [
+      {
+        data: dataset,
+        color: (opacity = 1) => `rgba(248,134,0, ${opacity})`,
+        strokeWidth: 3,
+      },
+    ],
+    legend: ['Similarity'],
+  }
 
-  strokeWidth: 1, // optional, default 3
-  barPercentage: 1,
-  useShadowColorFromDataset: false, // optional
-}
+  const chartConfig = {
+    backgroundGradientFrom: Colors.bgColor,
+    backgroundGradientTo: Colors.bgColor,
+    backgroundColor: Colors.bgColor,
+    color: (opacity = 1) => `rgba(248,134,0, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
 
-const Chart = () => {
+    strokeWidth: 1,
+    barPercentage: 1,
+    useShadowColorFromDataset: false,
+  }
+
   return (
     <View style={{ marginTop: 20, marginBottom: 20 }}>
       <Text style={styles.title}>Chart</Text>
