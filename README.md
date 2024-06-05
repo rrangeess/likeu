@@ -3,7 +3,7 @@
 ![Static Badge](https://img.shields.io/badge/TypeScript-%233178C6?style=flat-square&logo=typescript&logoColor=white&labelColor=%233178C6&color=%233178C6)
 
 <p align="center">
-<img width="200" alt="structure" src="https://github.com/seunggihong/clone/assets/39299265/de8b7f8a-6129-47e6-a3bb-b83886f6f8ce">
+<img width="200" alt="structure" src="https://github.com/seunggihong/clone/assets/39299265/4a0554e1-950d-44ea-9195-6f40b88bca91">
 </p>
 
 # Capstone Design
