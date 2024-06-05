@@ -1,4 +1,6 @@
 export interface UserType {
-  name: string
-  image: string
+  id: number
+  description: string
+  price: number
+  imageUrl: boolean
 }

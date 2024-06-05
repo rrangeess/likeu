@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '@/constants/Colors'
@@ -19,17 +19,41 @@ import Chart from '@/components/Chart'
 import listingData from '@/data/destinations.json'
 import userlogs from '@/data/userlogs.json'
 
+import axios from 'axios'
+import { API_URL } from '@env'
+
+interface UserType {
+  id: number
+  description: string
+  price: number
+  imageUrl: boolean
+}
+
 const Page = () => {
   const headerHeight = useHeaderHeight()
   const [team, setTeam] = useState('All')
   const [dataset, setDataset] = useState(
     userlogs.data.similarity_per_date.similarity
   )
+  const [loadData, setLoadData] = useState()
 
   const onTeamChanged = (team: string) => {
     setTeam(team)
   }
 
+  const fetchLoadData = async () => {
+    try {
+      const { data } = await axios.get(API_URL)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchLoadData()
+    console.log('use effect')
+  }, [])
   return (
     <>
       <Stack.Screen
