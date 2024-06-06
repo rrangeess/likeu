@@ -7,7 +7,7 @@ import * as ImagePicker from 'expo-image-picker'
 
 const Page = () => {
   const [vedio, setVedio] = useState(null)
-  const [imageUri, setImageUri] = useState(require('@/assets/null/github.jpeg'))
+  const [imageUri, setImageUri] = useState(null)
   const [camera, setCamera] = useState(null)
   const [cameraPermissions, setCameraPermissions] = useState('false')
   const [garraryPermissions, setGarraryPermissions] = useState('false')
@@ -39,7 +39,7 @@ const Page = () => {
         quality: 1,
       })
 
-      console.log(result.assets)
+      setImageUri(result.assets[0].uri)
     }
   }
 
@@ -50,7 +50,7 @@ const Page = () => {
         <Text style={styles.txt}>Uploading</Text>
         <View style={styles.uploading}>
           <Image
-            source={imageUri}
+            source={{ uri: imageUri }}
             style={{
               width: 280,
               height: 390,
