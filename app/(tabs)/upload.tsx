@@ -32,13 +32,12 @@ const Page = () => {
 
   const pickImage = async () => {
     if (garraryPermissions !== 'false') {
-      let result = await ImagePicker.launchImageLibraryAsync({
+      const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
       })
-
       setImageUri(result.assets[0].uri)
     }
   }
@@ -50,7 +49,9 @@ const Page = () => {
         <Text style={styles.txt}>Uploading</Text>
         <View style={styles.uploading}>
           <Image
-            source={{ uri: imageUri }}
+            source={{
+              uri: imageUri ? imageUri : require('@/assets/null/github.jpeg'),
+            }}
             style={{
               width: 280,
               height: 390,

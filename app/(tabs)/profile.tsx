@@ -55,7 +55,11 @@ const Page = () => {
         <View style={styles.container}>
           <View style={styles.imgContainer}>
             <Image
-              source={{ uri: userImage }}
+              source={{
+                uri: userImage
+                  ? userImage
+                  : require('@/assets/null/github.jpeg'),
+              }}
               style={{ width: 150, height: 150, borderRadius: 50 }}
             />
             <TouchableOpacity onPress={pickImage} style={styles.btn}>
